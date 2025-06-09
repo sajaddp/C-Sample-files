@@ -1,11 +1,24 @@
-#include <stdio.h>
-void main()
-{
-int c=0,n;
-scanf("%d",&n);
-while (n!=0){
-n=n/10;
-c=c+1;
+#include <iostream>
+#include <cstdlib>
+
+int countDigits(int number) {
+  if (number == 0) return 1;
+  int digitCount = 0;
+  number = std::abs(number);
+  while (number > 0) {
+    number /= 10;
+    ++digitCount;
+  }
+  return digitCount;
 }
-printf("%d",c);
+
+int main() {
+  int inputNumber;
+  std::cout << "Enter an integer: ";
+  if (!(std::cin >> inputNumber)) {
+    std::cerr << "Invalid input." << std::endl;
+    return 1;
+  }
+  std::cout << "Number of digits: " << countDigits(inputNumber) << std::endl;
+  return 0;
 }

@@ -1,14 +1,20 @@
-#include <stdio.h>
-#include <math.h>
-void main()
-{
-float i,a,s=0;
-a=sqrt(2);
-for(i=1;i<=10;i++){
-s+=a;
-printf("%f \n",a);
-a=sqrt(a+2);
+#include <iostream>
+#include <cmath>
+#include <iomanip>
 
-}
-printf("Majmoo 10 adad: %f\n",s);
+int main() {
+  constexpr int kIterationCount = 10;
+  double currentRoot = std::sqrt(2.0);
+  double totalSum = 0.0;
+
+  std::cout << std::fixed << std::setprecision(6);
+
+  for (int iteration = 1; iteration <= kIterationCount; ++iteration) {
+    totalSum += currentRoot;
+    std::cout << "Root value " << iteration << ": " << currentRoot << '\n';
+    currentRoot = std::sqrt(currentRoot + 2.0);
+  }
+
+  std::cout << "Total sum of " << kIterationCount << " root values: " << totalSum << '\n';
+  return 0;
 }

@@ -1,18 +1,35 @@
 #include <stdio.h>
-void main()
-{
-int n,i,b,max=0,min=0;
-printf("chand adad vared mikonid? \n");
-scanf("%d",&n);
-scanf("%d",&b);
-min=b;
-  for(i=1;i<=n-1;i++)
-  {
-  scanf("%d",&b);
-  if(b>max)
-  max=b;
-  if(b<min)
-  min=b;
+
+int main() {
+  int count, value, maximum, minimum;
+
+  printf("How many numbers will you enter?\n");
+  if (scanf("%d", &count) != 1 || count <= 0) {
+    printf("Invalid count.\n");
+    return 1;
   }
-  printf("max=%d \n min=%d",max,min);
+
+  printf("Number 1: ");
+  if (scanf("%d", &value) != 1) {
+    printf("Invalid input.\n");
+    return 1;
   }
+  maximum = minimum = value;
+
+  for (int i = 2; i <= count; ++i) {
+    printf("Number %d: ", i);
+    if (scanf("%d", &value) != 1) {
+      printf("Invalid input.\n");
+      return 1;
+    }
+    if (value > maximum) {
+      maximum = value;
+    }
+    if (value < minimum) {
+      minimum = value;
+    }
+  }
+
+  printf("Maximum number: %d\nMinimum number: %d\n", maximum, minimum);
+  return 0;
+}

@@ -1,24 +1,32 @@
-#include <stdio.h>
-void main()
-{
-int a,b,p,c,t,r;
-scanf("%d%d",&a,&b);
-p=a*b;
-if(b<a)
-{
-t=b;
-b=a;
-a=t;
+#include <iostream>
+#include <algorithm>
+
+int calculateGCD(int firstNumber, int secondNumber) {
+  while (secondNumber != 0) {
+    int remainder = firstNumber % secondNumber;
+    firstNumber = secondNumber;
+    secondNumber = remainder;
+  }
+  return firstNumber;
 }
-l1:r=b%a;
-if(r==0)
-c=a;
-else
-{
-b=a;
-a=r;
-goto l1;
+
+int calculateLCM(int firstNumber, int secondNumber) {
+  return (firstNumber / calculateGCD(firstNumber, secondNumber)) * secondNumber;
 }
-printf("Kmm= %d\n",c);
-printf("Bmm= %d",p/c);
+
+int main() {
+  int firstNumber{}, secondNumber{};
+  std::cout << "Enter two integers: ";
+  if (!(std::cin >> firstNumber >> secondNumber)) {
+    std::cerr << "Invalid input." << std::endl;
+    return 1;
+  }
+
+  int gcd = calculateGCD(firstNumber, secondNumber);
+  int lcm = calculateLCM(firstNumber, secondNumber);
+
+  std::cout << "LCM = " << lcm << std::endl;
+  std::cout << "GCD = " << gcd << std::endl;
+
+  return 0;
 }
